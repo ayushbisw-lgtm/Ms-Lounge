@@ -663,15 +663,17 @@
         </main>
     </div>
 
-    <!-- Add Food Modal -->
-    <div id="food-modal" class="bill-modal">
-        <div class="bill-content" style="max-width: 500px;">
+    <!-- Food Item Modal -->
+    <div id="food-modal" class="bill-modal" role="dialog" aria-modal="true" aria-labelledby="food-modal-title">
+        <div class="bill-content">
             <div class="bill-header-actions">
                 <h2 id="food-modal-title" style="color: var(--text-gold);">Add New Food</h2>
-                <button class="action-btn delete-btn" onclick="closeFoodModal()">Close</button>
+                <button class="action-btn delete-btn" onclick="closeFoodModal()" aria-label="Close modal">Close</button>
             </div>
-            <div class="form-section">
-                <label style="font-size: 0.8rem; color: var(--text-gray);">Category</label>
+            
+            <div class="bill-form">
+                <p id="food-modal-desc" class="visually-hidden">Enter the details of the food item to add or edit in the menu.</p>
+                <label for="food-category" style="font-size: 0.8rem; color: var(--text-gray);">Category</label>
                 <select id="food-category" class="bill-input">
                     <option value="tandoor">Tandoor & Starters</option>
                     <option value="chinese">Chinese</option>
@@ -696,14 +698,15 @@
     </div>
 
     <!-- Bill Generation Modal -->
-    <div id="bill-modal" class="bill-modal">
+    <div id="bill-modal" class="bill-modal" role="dialog" aria-modal="true" aria-labelledby="bill-modal-title" aria-describedby="bill-modal-desc">
         <div class="bill-content">
             <div class="bill-header-actions">
-                <h2 style="color: var(--text-gold);">Generate Bill</h2>
-                <button class="action-btn delete-btn" onclick="closeBillModal()">Close</button>
+                <h2 id="bill-modal-title" style="color: var(--text-gold);">Generate Bill</h2>
+                <button class="action-btn delete-btn" onclick="closeBillModal()" aria-label="Close modal">Close</button>
             </div>
             
             <div class="bill-form">
+                <p id="bill-modal-desc" class="visually-hidden">Fill in the customer details and items to generate a printable receipt.</p>
                 <div class="form-section">
                     <h3>Customer Details</h3>
                     <input type="text" id="bill-cust-name" class="bill-input" placeholder="Customer Name">
