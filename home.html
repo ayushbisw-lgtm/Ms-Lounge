@@ -851,14 +851,14 @@
     </footer>
 
     <!-- RESERVATION SUCCESS MODAL (UX Premium Detail) -->
-    <div id="success-modal" class="modal-overlay">
+    <div id="success-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="success-modal-title" aria-describedby="success-modal-desc">
         <div class="modal-card glassmorphism">
-            <button class="close-modal-btn" aria-label="Close Modal">&times;</button>
+            <button class="close-modal-btn" aria-label="Close modal">&times;</button>
             <div class="modal-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </div>
-            <h3 class="modal-title">Reservation Requested</h3>
-            <p class="modal-text">Thank you, <strong id="summary-name">Guest</strong>! We have received your request for <strong id="summary-guests">2</strong> guests on <strong id="summary-date">date</strong> at <strong id="summary-time">time</strong>.</p>
+            <h3 id="success-modal-title" class="modal-title">Reservation Requested</h3>
+            <p id="success-modal-desc" class="modal-text">Thank you, <strong id="summary-name">Guest</strong>! We have received your request for <strong id="summary-guests">2</strong> guests on <strong id="summary-date">date</strong> at <strong id="summary-time">time</strong>.</p>
             <p class="modal-info">A reservation request details has been compiled. To finalize instant seat confirmation via WhatsApp, click below.</p>
             
             <a href="#" id="modal-wa-btn" target="_blank" class="modal-cta gold-filled-btn">
