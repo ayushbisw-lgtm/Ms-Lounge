@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Your Order | MS Bar and Lounge</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg-darker: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text-gold: #D4AF37;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-darker);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .order-header {
+            background-color: var(--bg-card);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .order-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem 8rem; /* Space for fixed bottom cart */
+        }
+
+        .table-selector {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .order-menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .order-item-card {
+            background: var(--bg-card);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-details h3 {
+            margin: 0 0 0.3rem;
+            color: var(--text-white);
+            font-size: 1.1rem;
+        }
+
+        .item-details p {
+            margin: 0;
+            color: var(--text-gold);
+            font-weight: 600;
+        }
+
+        .add-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .qty-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--text-gold);
+            color: var(--text-gold);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-val {
+            min-width: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-gold);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--text-gold);
+            transform: translateY(-2px);
+        }
+
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--bg-card);
+            border-top: 2px solid var(--text-gold);
+            padding: 1.5rem;
+            display: none; /* Hidden by default */
+            z-index: 1001;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .place-order-btn {
+            background: var(--text-gold);
+            color: var(--bg-darker);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .place-order-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            scrollbar-width: none;
+        }
+
+        .category-tab {
+            white-space: nowrap;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            color: var(--text-gray);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .category-tab.active {
+            background: var(--text-gold);
+            color: var(--bg-darker);
+            border-color: var(--text-gold);
+            font-weight: 700;
+        }
+
+        /* Search Bar Styles */
+        .order-search-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .order-search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            padding: 0 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .order-search-wrapper:focus-within {
+            border-color: var(--text-gold);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        #order-search {
+            width: 100%;
+            padding: 0.8rem 0;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 1rem;
+        }
+
+        #order-search::placeholder {
+            color: #b0b0b0;
+        }
+
+        .search-icon {
+            color: var(--text-gold);
+            margin-right: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Improved Text Visibility */
+        .item-details h3 {
+            margin: 0 0 0.3rem;
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .category-tab {
+            white-space: nowrap;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            color: #e0e0e0;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .table-selector label {
+            color: var(--text-gold);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="order-header">
+        <a href="home.html" class="logo" style="text-decoration: none;">
+            <span style="color: white; font-weight: 700; font-size: 1.2rem;">MS</span> <span style="color: var(--text-gold); font-weight: 700; font-size: 1.2rem;">BAR & LOUNGE</span>
+        </a>
+        <div style="font-weight: 700; color: var(--text-gold); letter-spacing: 1px;">ORDER PORTAL</div>
+    </header>
+
+    <main class="order-container">
+        <div class="table-selector">
+            <label for="order-table-no" style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: var(--text-gold);">Select Your Table</label>
+            <select id="order-table-no" style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; color: white; font-size: 1.1rem; outline: none; appearance: none;">
+                <option value="" disabled selected>Choose Table Number...</option>
+                <!-- Tables will be loaded here -->
+            </select>
+            
+            <!-- Request Bill Section -->
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; border-top: 1px solid rgba(212, 175, 55, 0.1); padding-top: 1.5rem;">
+                <div style="flex-grow: 1;">
+                    <p style="margin: 0; font-size: 0.9rem; color: var(--text-gray);">Finished your meal?</p>
+                    <p style="margin: 0; font-size: 0.8rem; color: rgba(212, 175, 55, 0.6);">Ask for your bill via the portal</p>
+                </div>
+                <button onclick="requestBill()" class="action-btn" style="border-color: var(--text-gold); color: var(--text-gold); padding: 0.7rem 1.2rem; white-space: nowrap;">
+                    Request Bill
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="order-search-container">
+            <div class="order-search-wrapper">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="order-search" placeholder="Search for food or drinks..." aria-label="Search Menu">
+            </div>
+        </div>
+
+        <div class="category-tabs" id="category-tabs">
+            <div class="category-tab active" data-cat="all">All Specialties</div>
+            <!-- Categories will be populated by JS -->
+        </div>
+
+        <div class="order-menu-grid" id="order-menu-grid">
+            <!-- Items will be populated by JS -->
+        </div>
+    </main>
+
+    <div class="cart-bar" id="cart-bar">
+        <div class="cart-content">
+            <div>
+                <div id="cart-count" style="font-weight: 600; font-size: 1.1rem;">0 Items</div>
+                <div id="cart-total" style="color: var(--text-gold); font-weight: 700;">₹0.00</div>
+            </div>
+            <button class="place-order-btn" onclick="placeOrder()">Place Order Now</button>
+        </div>
+    </div>
+
+    <script src="menu-data.js"></script>
+    <script src="order.js"></script>
+</body>
+</html>

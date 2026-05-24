@@ -1,0 +1,102 @@
+const MENU_DATA = {
+    beverages: [
+        { name: "Coal Ch", price: "70.00" },
+        { name: "Cloud", price: "530.00" },
+        { name: "Energy Drink", price: "194.00" },
+        { name: "Soda", price: "50.00" },
+        { name: "Soft Drinks", price: "60.00" },
+        { name: "Tonic Water", price: "102.00" },
+        { name: "Fresh Lime Soda", price: "78.00" },
+        { name: "Mineral Water", price: "60.00" },
+        { name: "Lime Cordial", price: "30.00" },
+        { name: "Fresh", price: "78.00" },
+        { name: "Diet Coke", price: "88.00" },
+        { name: "Watermelon Juice", price: "170.00" },
+        { name: "Ginger Ale", price: "144.00" }
+    ],
+    mocktails: [
+        { name: "Virgin Mojito", price: "206.00" },
+        { name: "Blue Lagoon", price: "196.00" },
+        { name: "Virgin Mojito Flavored", price: "216.00" }
+    ],
+    cocktails: [
+        { name: "Jagger Bomb", price: "608.00" },
+        { name: "Liit", price: "428.00" },
+        { name: "Margarita", price: "352.00" },
+        { name: "Whisky Sour", price: "324.00" },
+        { name: "Cosmopolitan", price: "324.00" },
+        { name: "Mojito", price: "352.00" },
+        { name: "Kamikaze Shooter", price: "288.00" },
+        { name: "Mojito Flavoured", price: "372.00" },
+        { name: "Sour Apple Poison", price: "288.00" },
+        { name: "Coffee Lemonade Cocktail", price: "352.00" },
+        { name: "Orange Gin Cooler", price: "352.00" },
+        { name: "Bacardi Pitcher", price: "550.00" }
+    ],
+    indian: [
+        { name: "Mutton Rogan Josh", price: "610.00" },
+        { name: "Mutton Kali Mirch", price: "610.00" },
+        { name: "Mutton Biriyani", price: "514.00" },
+        { name: "Chicken Biryani", price: "376.00" },
+        { name: "Veg Biryani", price: "290.00" },
+        { name: "Subz Pulao", price: "248.00" },
+        { name: "Karahi Paneer", price: "328.00" },
+        { name: "Dal Manthan (Dal Makhani)", price: "314.00" },
+        { name: "Paneer Butter Masala", price: "332.00" },
+        { name: "Chicken Bharta", price: "346.00" },
+        { name: "Chicken Kassa", price: "346.00" },
+        { name: "Mutton Kassa", price: "610.00" },
+        { name: "Veg Au Gratin", price: "364.00" }
+    ],
+    tandoor: [
+        { name: "Tandoori Murg", price: "358.00" },
+        { name: "Murg Kalmi Kabab", price: "268.00" },
+        { name: "Paneer Basil Tikka", price: "434.00" },
+        { name: "Murg Pahari Tikka", price: "422.00" },
+        { name: "Murg Lasooni Kebab", price: "422.00" },
+        { name: "Murg Angara Kebab", price: "418.00" },
+        { name: "Peshawari Tandoori Pomfret", price: "468.00" },
+        { name: "Sarson Wali Machli (Bhetki)", price: "762.00" },
+        { name: "Dilliwale Soya Kebab", price: "338.00" },
+        { name: "Naan", price: "80.00" },
+        { name: "Butter Naan", price: "90.00" },
+        { name: "Garlic Naan", price: "98.00" },
+        { name: "Tandoori Roti", price: "68.00" }
+    ],
+    chinese: [
+        { name: "Chilli Chicken", price: "252.00" },
+        { name: "Chicken Manchurian", price: "252.00" },
+        { name: "Chicken Mongolian", price: "258.00" },
+        { name: "Garlic Chicken", price: "248.00" },
+        { name: "Schezwan Chicken", price: "248.00" },
+        { name: "Chicken Dragon", price: "306.00" },
+        { name: "Drums Of Heaven", price: "254.00" },
+        { name: "Fish Chilli", price: "368.00" },
+        { name: "Prawn Chilli", price: "440.00" },
+        { name: "Hakka Chow Mixed", price: "270.00" },
+        { name: "Fried Rice Mixed", price: "278.00" },
+        { name: "Chilli Paneer", price: "242.00" },
+        { name: "Veg Manchurian", price: "204.00" },
+        { name: "Crispy Chilli Babycorn", price: "230.00" }
+    ],
+    whisky: [
+        { name: "Monkey Shoulder", price: "352.00" },
+        { name: "Glenfiddich 12 Yo", price: "400.00" },
+        { name: "Talisker 10 Yo", price: "406.00" },
+        { name: "Jw Blue Label", price: "1364.00" },
+        { name: "Chivas Regal 12 Yo", price: "330.00" },
+        { name: "Jw Black Label", price: "340.00" },
+        { name: "Glenlivet 12 Yo", price: "384.00" },
+        { name: "Jack Daniel's", price: "322.00" },
+        { name: "Jameson", price: "200.00" },
+        { name: "100 Pipers", price: "200.00" },
+        { name: "Blenders Pride", price: "130.00" },
+        { name: "Antiquity Blue", price: "152.00" }
+    ],
+    vodka: [
+        { name: "Absolut", price: "208.00" },
+        { name: "Grey Goose", price: "324.00" },
+        { name: "Smirnoff", price: "128.00" },
+        { name: "Magic Moments Verve", price: "128.00" }
+    ]
+};
