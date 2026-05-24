@@ -1,22 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "routes": [
-    {
-      "src": "/index",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/home",
-      "dest": "/home.html"
-    },
-    {
-      "src": "/order",
-      "dest": "/order.html"
-    },
-    {
-      "src": "/login",
-      "dest": "/login.html"
-    }
-  ]
+  "trailingSlash": false
 }
